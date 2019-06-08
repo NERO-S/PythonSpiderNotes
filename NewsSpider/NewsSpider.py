@@ -37,14 +37,14 @@ def New_Page_Info(new_page):
 def Spider(url):
     i = 0
     print "downloading ", url
-    myPage = requests.get(url).content.decode("gbk")
+    myPage = requests.get(url).content.decode("gbk")        # get http file for each page from url 
     # myPage = urllib2.urlopen(url).read().decode("gbk")
-    myPageResults = Page_Info(myPage)
+    myPageResults = Page_Info(myPage)                       # get http links for each level website
     save_path = u"网易新闻抓取"
     filename = str(i)+"_"+u"新闻排行榜"
     StringListSave(save_path, filename, myPageResults)
     i += 1
-    for item, url in myPageResults:
+    for item, url in myPageResults:     #two elements in one tuple
         print "downloading ", url
         new_page = requests.get(url).content.decode("gbk")
         # new_page = urllib2.urlopen(url).read().decode("gbk")
